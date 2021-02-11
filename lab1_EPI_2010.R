@@ -1,17 +1,28 @@
-EPI_data <- read.csv("C:/Users/315ac/OneDrive/Documents/School Stuff/Grad School/ITWS 4600 - Data Analytics/2010EPI_data.csv")
+EPI_data <- read.csv("C:/Users/315ac/OneDrive/Documents/School Stuff/Grad School/ITWS 4600 - Data Analytics/Lab 1/2010EPI_data.csv")
 View(EPI_data)
 attach(EPI_data)
 fix(EPI_data)
-EPI #error in finding value for EPI, needs debugging
+EPI
 tf <- is.na(EPI)
 E <- EPI[!tf]
-summary(EPI_data)
-fivenum(EPI_data,na.rm=TRUE)#causes error, needs debugging
-stem(EPI_data)
+summary(EPI)
+fivenum(EPI,na.rm=TRUE)
+stem(EPI)
 help(hist)
-hist(EPI_data)
-hist(EPI_data, seq(30., 95., 1.0), prob=TRUE)
+hist(EPI)
+hist(EPI, seq(30., 95., 1.0), prob=TRUE)
 help(lines)
-lines(density(EPI_data,na.rm=TRUE,bw=1.))
+lines(density(EPI,na.rm=TRUE,bw=1.))
 help(rug)
-rug(EPI_data)
+rug(EPI)
+plot(ecdf(EPI), do.points=FALSE, verticals=TRUE)
+par(pty="s")
+qqnorm(EPI);qqline(EPI)
+x <- rt(250, df = 5)
+qqnorm(x); qqline(x)
+qqplot(qt(ppoints(250),df=5),x,xlab="Q-Q plot for t dsn")
+qqline(x)
+EPILand <- EPI[!Landlock]
+Eland <- EPILand[!is.na(EPILand)]
+hist(Eland)
+hist(Eland, seq(30., 95., 1.0), prob=TRUE)
